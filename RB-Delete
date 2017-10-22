@@ -1,0 +1,30 @@
+\textsc{RB-Delete}($T,z$)
+			\begin{algorithmic}[1]
+				\State $y=z$
+				\State $y-original-color = y.color$
+				\If {$z.left == T.nil$}
+					\State $x = z.right$
+					\State \Call {RB-Transplant}{$T,z,z.right$}
+				\ElsIf {$z.right == T.nil$}
+					\State $x = z.left$
+					\State \Call {RB-Transplant}{$T,z,z.left$}
+				\Else	
+					\State $y = $ \Call{Tree-Minimum} {$z.right$}
+					\State $y-original-color = y.color$
+					\State $x = y.right$
+					\If {$y.p == z$}
+						\State $x.p = y$
+					\Else
+						\State \Call {RB-Transplant} {$T,y,y.right$}
+						\State $y.right = z.right$
+						\State $y.right.p = y$
+					\EndIf
+					\State \Call {RB-Transplant} {$T,z,y$}
+					\State $y.left = z.left$
+					\State $y.left.p = y$
+					\State $y.color = z.color$
+				\EndIf
+			\If {$y-original-color = BLACK$}
+				\State \Call {RB-Delete-Fixup} {$T,x$}
+			\EndIf
+			\end{algorithmic}
