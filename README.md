@@ -1,1 +1,1 @@
-# CLRS_LaTeX_PseudoCode
+# CLRS - LaTeX - PseudoCode
